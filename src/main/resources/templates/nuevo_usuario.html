@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <title>Registro de producto</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 70px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .navbar-inverse {
+            background-color: #34495e;
+            border-color: #2c3e50;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #ecf0f1;
+        }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-brand:focus {
+            color: #bdc3c7;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ecf0f1;
+        }
+
+        .navbar-inverse .navbar-nav > li > a:hover,
+        .navbar-inverse .navbar-nav > li > a:focus {
+            color: #bdc3c7;
+            background-color: transparent;
+        }
+
+        .navbar-toggle .icon-bar {
+            background-color: #ecf0f1;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-success {
+            background-color: #2ecc71;
+            border-color: #27ae60;
+        }
+
+        .btn-success:hover {
+            background-color: #27ae60;
+            border-color: #1e8449;
+        }
+
+        h1.text-center {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}" th:text="#{text6.txt}">Registro y inicio de sesión</a>
+                <a class="navbar-brand" href="?lang=en">English</a>
+                <a class="navbar-brand" href="?lang=de">Deutsch</a>
+                <a class="navbar-brand" href="?lang=fr">French</a>
+                <a class="navbar-brand" href="#" th:href="@{/nuevo}" th:text="#{text7.txt}">Agregar producto</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}" th:text="#{text8.txt}">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center" th:text="#{text5.txt}">Registro de usuarios</h1>
+                <div class="card-body">
+                    <form th:action="@{/guardar}" th:object="${usuario}" method="post">
+                        <div class="form-group">
+                            <label th:text="#{text1.txt}">Nombre:</label>
+                            <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite el nombre del usuario" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label th:text="#{text2.txt}">Apellido:</label>
+                            <input type="text" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Digite el apellido del usuario" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label th:text="#{text3.txt}">Email:</label>
+                            <input type="text" name="email" th:field="*{email}" class="form-control" placeholder="Digite el correo del usuario" required>
+                        </div>
+                        <br>
+                        <div class="box-footer">
+                            <button class="btn btn-success" th:text="#{text4.txt}">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

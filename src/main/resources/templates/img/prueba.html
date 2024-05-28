@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background-color: #080202;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .swiper-button-prev::after {
+    font-size: 25px; 
+  }
+  .swiper-button-next::after {
+    font-size: 25px; 
+  }
+
+  .swiper-button-next{
+    font-size: 25px; 
+    color: #DB241B;
+  }
+  .swiper-button-prev{
+    font-size: 25px; 
+    color: #DB241B;
+  }
+  
+  .swiper-pagination-bullet{
+     background-color: #D3D2D2;
+     opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active{
+    background-color: #DB241B;
+ }
+
+ .menu{
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+ }
+ .navbar{
+    display: flex;
+ }
+ .menu-1{
+    margin-right: 100px;
+ }
+ .menu-2{
+    margin-left: 80px;
+    display: flex;
+    align-items: center;
+ }
+ .logo-1{
+    width: 0;
+ }
+ .logo-2{
+    width: 125px;
+ }
+
+ .socials {
+    display: flex;
+ }
+ .social {
+    margin: 0 10px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #DB241B;
+    border-radius: 50%;
+ }
+
+ .social:hover{
+    background-color: #DB241B;
+  }
+
+  .social img {
+    margin: 8px 0 0 10px;
+   }
+
+ .menu .navbar ul li {
+    position: relative;
+    float: left;
+   }
+   .menu .navbar ul li a {
+     font-size: 18px;
+     padding: 20px;
+     color: #FFFFFF;
+     display: block;
+   }
+   .menu .navbar ul li a:hover {
+    color: #DB241B;
+   }
+
+   #menu {
+    display: none;
+   }
+   .menu-icono {
+    width: 25px;
+   }
+   .menu label {
+    cursor: pointer;
+    display: none;
+   }
+   .header-content {
+    margin-top: 200px;
+    padding-bottom: 50px;
+   }
+
+   .slider {
+    display: flex;
+    align-items: center;
+   }
+   .slider-txt {
+    margin-left: 85px;
+    width: 50%;
+   }
+   .slider-txt h1 {
+    font-size: 70px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 800;
+   }
+   .slider-txt p {
+      font-size: 18px;
+      color: #a7a7a7;
+   }
+   .botones{
+      margin-top: 50px;
+   }
+   .btn-1 {
+      display: inline-block;
+      padding: 10px 25px;
+      border: 2px solid #DB241B;
+      color: #FFFFFF;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-right: 20px;
+      border-radius: 50px;
+
+   }
+   
+   .btn-1:hover{
+      background-color: #DB241B;
+   }
+   .slider-img{
+      width: 50%;
+   }
+   .slider-img img{
+      margin-right: 250px;
+      width: 558px;
+
+   }
+   .products {
+      background-color: #0d0d0d;
+   }
+   .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 100px 0px;
+   }
+   .tabs label{
+      width: 15%;
+      order: 1;
+      display: block;
+      padding: 20px 0;
+      text-align: center;
+      cursor: pointer;
+      color: #a7a7a7;
+      font-weight: 700;
+      transition: background ease 0.2s;
+   }
+   .tabs .tab {
+      order: 99;
+      flex-grow: 1;
+      width: 100px;
+      display: none;
+      padding-top: 25px; 
+
+   }
+
+   .tabs input[type="radio"] {
+      display: none;
+   }
+
+   .tabs input[type="radio"]:checked + label {
+      border-bottom: 2px solid #DB241B;
+      color: #FFFFFF;
+
+   }
+   .tabs input[type="radio"]:checked + label + .tab{
+      display: block;
+   }
+   .product {
+      display: flex;
+      align-items: center;
+      padding: 100px;
+      margin: 0 10px;
+   }
+   .product-img{
+      width: 100%;
+      text-align: left;
+   }
+   .product-img button{
+      display: inline-block;
+      padding: 15px 35px;
+      background-color: #DB241B;
+      color: #FFFFFF;
+      font-weight: 800;
+      text-transform: uppercase;
+      border-radius: 50px;
+   }
+   .product-img button:hover{
+      background-color: #DB241B;
+   }
+   .product-img h4{
+      display: inline-block;
+      padding: 5px 7px; 
+      line-height: 15px;
+      color: #FFFFFF;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 800;
+      border: 2px solid #555555;
+      border-radius: 10px;
+      margin-bottom: 50px;
+   }
+   .product-img img{
+      width: 250px;
+      height: 100%;
+   }
+   .product-txt{
+      width: 50%;
+      margin-left: 10px;
+      text-align: left;
+   }
+   .product-txt h4{
+      color: #FFFFFF;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 5px;
+   }
+   .product-txt p{
+      color: #a7a7a7;
+      font-size: 16px;
+      margin-bottom: 15px;
+   }
+   .product-txt span{
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 800;
+   } 
+
+   .info{
+      padding: 100px 0px;
+      display: flex;
+      align-items: center;
+   }
+   .info-img{
+      width: 50%;
+   }
+   .info-img img{
+      width: 500px;
+      height: 250px;
+   }
+
+   .info-txt{
+      width: 50%;
+   }
+   .info-txt h2{
+      font-size: 75px;
+      color: #FFFFFF;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+   }
+   .info-txt p{
+      font-size: 18px;
+      color: #a7a7a7;
+      margin-bottom: 50px;
+   }
+
+   .btn-2 {
+      display: inline-block;
+      padding: 15px 35px;
+      background-color: #DB241B;
+      color: #FFFFFF;
+      font-weight: 800;
+      text-transform: uppercase;
+      border-radius: 50px;
+   }
+   .btn-2:hover {
+      background-color: #DB241B;
+      }
+
+   .horario {
+      padding: 100px 0px;
+      background-color: #0d0d0d;
+   }  
+   
+   .horario-info {
+      font-size: 75px;
+      color: #FFFFFF;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+   } 
+   .horario-txt {
+      display: flex;
+      justify-content: space-between;
+   }
+   .txt {
+      color: #FFFFFF;
+   }
+   .txt h4 {
+      font-size: 18px;
+      color: #a7a7a7;
+      margin-bottom: 30px;
+   }
+   .txt p {
+      font-size: 17px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 20px;
+   }
+
+   .map {
+      filter: grayscale(100%) invert(92%) contrast(93%);
+
+   }
+
+   .footer{
+      padding: 100px 0px;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   .links h4 {
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+   }
+
+   .links ul li a {
+      color: #FFFFFF;
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: inline-block;
+   }
+   
+   @media(max-width: 991px) {
+      .menu {
+         padding: 20px;
+         justify-content: space-between;
+      }
+      .menu-2 {
+         display: none;
+      }
+      .logo-1 {
+         width: 100px;
+      }
+      .logo-2{
+         width: 0px;
+      }
+      .menu label{
+         display: initial;
+      }
+      .menu .navbar {
+         position: absolute;
+         top: 100px;
+         left: 0;
+         right: 0;
+         background-color: #181818;
+         display: none;
+      }
+      .menu .navbar ul li {
+         width: 100%;
+      }
+      #menu:checked ~ .navbar{
+         display: initial;
+      }
+      .header-content {
+         padding: 30px;
+         margin-top: 100px;
+
+      }
+      .slider{
+         flex-direction: column;
+      }
+      .slider-txt {
+         margin-left: 0;
+         width: 100%;
+         text-align: center;
+         margin-bottom: 50px;
+      }
+      .slider-txt h1{
+         font-size: 50px;
+      }
+      .slider-txt p{
+         font-size: 16px;
+      }
+
+      .btn-1 {
+         padding: 10px 25px;
+         font-size: 14px;
+      }
+      .slider-img{
+         width: 100%;
+         text-align: center;
+      }
+      .slider-img img{
+         margin-right: 0px;
+         width: 300px;
+      }
+      .swiper-horizontal > .swiper-pagination-bullets, 
+      .swiper-pagination-bullets,.swiper-pagination-horizontal, 
+      .swiper-pagination-customs,
+      .swiper-pagination-fraction {
+         bottom: -7px;
+      }
+
+      .tabs{
+         padding: 50px 30px;
+      }
+      .tabs label{ 
+         width: 33%;
+      }
+      .info{
+         padding: 30px;
+         flex-direction: column;
+      }
+      .info-img{
+         width: 100%;
+         text-align: center;
+      }
+      .info-img img{
+         width: 400px;
+         height: 200px;
+         margin-bottom: 25px;
+      }
+      .info-txt {
+         width: 100%;
+         text-align: center;
+      }
+      .info-txt h2{
+         font-size: 50px;
+      }
+      .info-txt p{
+         font-size: 16px;
+      }
+      .btn-1 {
+         font-size: 16px;
+      }
+      .horario {
+         padding: 30px;
+         text-align: center;
+      }
+      .horario-info h2{
+         font-size: 50px;
+         margin-bottom: 15px;
+      }
+      .horario-txt {
+         flex-direction: column;
+      }
+      .socials {
+         justify-content: center;
+      }
+      .social img{
+         margin: 8px 0 0 0;
+      }
+      .footer {
+         padding: 30px;
+         flex-direction: column;
+         text-align: center;
+      }
+      .links h4 {
+            margin: 25px 0px 10px 0px;
+         }
+      
+
+   }
+
+   .fin{
+      color: #FFFFFF;
+      text-align: center;
+      padding-bottom: 10px;
+      
+   }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="menu container">
+          
+          <input type="checkbox"  id="menu">
+          <label for="menu">
+             
+          </label>
+          <nav class="navbar">
+                <div class="menu-1">
+                    <ul>
+                      <li> <a  href="?lang=en">English</a> </li>
+               <li>  <a href="?lang=de">Deutsch</a> </li>
+                <li> <a href="?lang=fr">French</a> </li>
+                     
+                      <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="#{p1.txt}">Cerrar
+							sesión</a></li>
+                     
+                    </ul>
+                 </div>
+               
+                <div class="menu-2">
+                  <ul>
+                    <li><a href="#horario" th:text="#{p2.txt}" >horario</a></li>
+                  </ul>
+                  <div class="socials">
+                    <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+                      <div class="social">
+                        
+                      </div>
+                    </a>
+                    <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+                      <div class="social">
+                        
+                      </div>
+                    </a>
+                    <a href="https://x.com/granjaburgers?t=2AwKDdOMALgILqy2lGJB-w&s=08">
+                      <div class="social">
+                        
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+            </nav>
+
+
+
+        </div>
+        <div class="header-content container" >
+          <div class="swiper mySwiper-1">
+            <div class="swiper-wrapper">
+
+			<div class="swiper-slide">
+                <div class="slider">
+                  <div class="slider-txt">
+                    <h1 th:text="#{p3.txt}">Bienvendio</h1>
+                    < p >
+                      Estas son las ofertas que tenemos para ti porque te has registardo
+                    </p>
+                    <div class="botones">
+                      
+                      <a href="#bb" class="btn-1" th:text="#{p5.txt}">Menu</a>
+                    </div>
+
+                  </div>
+                  <div class="slider-img">
+                    
+
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="slider">
+                  <div class="slider-txt">
+                    <h1 th:text="#{p6.txt}" >Hamburguesa</h1>
+                    <p th:text="#{p7.txt}">
+                      "La Hamburguesa de la casa"  deliciosa, jugosa y a un precio insuperable
+                    </p>
+                    <div class="botones">
+                      
+                      <a href="#bb" class="btn-1" th:text="#{p8.txt}">Menu</a>
+                    </div>
+
+                  </div>
+                  <div class="slider-img">
+                   
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider">
+                  <div class="slider-txt">
+                    <h1 th:text="#{pa1.txt}">Burritos</h1>
+                    <p th:text="#{pa2.txt}">
+                      nuestro icónico "burritos con camaron", Ven y pruebalo !!
+                    </p>
+                    <div class="botones">
+                    
+                      <a href="#bb" class="btn-1" th:text="#{pa3.txt}">Menu</a>
+                    </div>
+
+                  </div>
+                  <div class="slider-img">
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="slider">
+                  <div class="slider-txt">
+                    <h1 th:text="#{pa4.txt}">Pizza</h1>
+                    <p th:text="#{pa5.txt}">
+                      La mejor "pizza peperoni" de toda neiva, Ven y compruebalo!
+                    </p>
+                    <div class="botones">
+                      
+                      <a href="#bb" class="btn-1" th:text="#{pa6.txt}">Menu</a>
+                    </div>
+
+                  </div>
+                  <div class="slider-img">
+                  
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          <div class="swiper-button-next"></div>  
+          <div class="swiper-button-prev"></div>  
+          <div class="swiper-pagination"></div>  
+
+          </div>
+        </div>
+    </header>
+  
+
+  <main class="products" id="bb">
+    <div class="tabs container">
+
+      <input type="radio" name="tabs" id="tab1" checked="checked" class="tabInput" value="1">
+      <label for="tab1" th:text="#{pa7.txt}">Hamburguesa</label>
+        <div class="tab">
+          <div class="swiper mySwiper-2" id="swiper1">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                    
+                    
+                  </div>
+                  <div class="product-txt">
+                    <h4 th:text="#{h1.txt}">especialidad</h4>
+                    <p th:text="#{h2.txt}">"La Hamburguesa de la casa"</p>
+                    <span class="price">$ 25.000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                   
+                    
+                  </div>
+                  <div class="product-txt">
+                    <h4>novedadosa</h4>
+                    <p>Hamburguesa en forma de sandwich</p>
+                    <span class="price">$ 30.000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                    
+                  </div>
+                  <div class="product-txt">
+                    <h4>Delicioso!</h4>
+                    <p>Hamburguesa con pollo apanado</p>
+                    <span class="price">$ 35.000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+               <div class="swiper-button-next"></div>
+               <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+      
+        <input type="radio" name="tabs" id="tab2" checked="checked" class="tabInput" value="2">
+        <label for="tab2">Burritos</label>
+          <div class="tab">
+            <div class="swiper mySwiper-2" id="swiper2">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"> 
+                  <div class="product">     
+                    <div class="product-img">
+                     
+                    </div>
+                    <div class="product-txt">
+                      <h4>nuevo</h4>
+                      <p>burrito al pastor</p>
+                      <span class="price">$ 25.000</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide"> 
+                  <div class="product">     
+                    <div class="product-img">
+                      
+                    </div>
+                    <div class="product-txt">
+                      <h4>Delicioso</h4>
+                      <p>burrito con chorizo</p>
+                      <span class="price">$ 30.000</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide"> 
+                  <div class="product">     
+                    <div class="product-img">
+                      
+                    </div>
+                    <div class="product-txt">
+                      <h4>Riquisimo</h4>
+                      <p>burrito con camaron</p>
+                      <span class="price">$ 35.000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                 <div class="swiper-button-next"></div>
+                 <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+          
+          
+
+          
+      <input type="radio" name="tabs" id="tab3" checked="checked" class="tabInput" value="3">
+      <label for="tab3">variedad</label>
+        <div class="tab">
+          <div class="swiper mySwiper-2" id="swiper3">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                   
+                  </div>
+                  <div class="product-txt">
+                    <h4>nueva</h4>
+                    <p>lasaña en salsa</p>
+                    <span class="price">$ 25.000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                   
+                  </div>
+                  <div class="product-txt">
+                    <h4>NUEVO	</h4>
+                    <p>sPAGUETI CON SALSA</p>
+                    <span class="price">$ 30.000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide"> 
+                <div class="product">     
+                  <div class="product-img">
+                    
+                  </div>
+                  <div class="product-txt">
+                    <h4>DULCE</h4>
+                    <p>postre de tres leches</p>
+                    <span class="price">$ 35.000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+               <div class="swiper-button-next"></div>
+               <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+
+  
+  
+      </div>
+  </main>
+
+
+  <section class="info container">
+    <div class="info-img">
+
+      
+
+    </div>
+    <div class="info-txt">
+      <h2>Informacion</h2>
+      <p>te invitamos a descubrir la verdadera esencia de la comida rápida de calidad. Nuestra pasión por
+         los ingredientes frescos y la preparación artesanal se refleja en cada uno de nuestros platos, 
+         diseñados para deleitar tu paladar y transportarte a un mundo de sabores inolvidables.</p>
+         
+    </div>
+
+  </section>
+
+  <section class="horario" id="horario">
+    <div class="horario-info container">
+      <h2>Horario</h2>
+      <div class="horario-txt">
+            <div class="txt">
+              <h4>Direccion</h4>
+              <p>
+                Estamos ubicados en la carrera 4° con calle 10 22-50
+              </p>
+              <p>
+                Los esperamos!
+             </p>
+            </div>
+            <div class="txt">
+              <h4>Horario</h4>
+              <p>
+                 lunes a viernes : 9am - 8pm 
+              </p>
+              <p>
+                Sabado, domingo : 11am - 7pm 
+             </p>
+            </div>
+            <div class="txt">
+              <h4>Telefono</h4>
+              <p>
+                    numero celular: 312121541212
+              </p>
+              <p>
+                  numero fijo: 545121455
+             </p>
+            </div>
+            <div class="txt">
+              <h4>Redes Sociales</h4>
+              <div class="socials">
+                <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+                  <div class="social">
+                    
+                  </div>
+                </a>
+                <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+                  <div class="social">
+                    
+                  </div>
+                </a>
+                <a href="https://x.com/granjaburgers?t=2AwKDdOMALgILqy2lGJB-w&s=08">
+                  <div class="social">
+                    
+                  </div>
+                </a>
+              </div> 
+            </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section>
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63753.20630022989!2d-75.27238849999999!3d2.9376194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b747c5a6b4009%3A0x69acf162bb25539a!2sNeiva%2C%20Huila!5e0!3m2!1ses-419!2sco!4v1713999072825!5m2!1ses-419!2sco" width="100%" height="520" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <footer class="footer container">
+
+   
+    <div class="links">
+      <h4>Bienvendio</h4>
+      <ul>
+       
+      </ul>
+    </div>
+    <div class="links">
+      <h4>Cierra sesion</h4>
+      <ul>
+         <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+							sesión</a></li>
+      </ul>
+    </div>
+
+    <div class="links">
+      <h4>redes</h4>
+      <div class="socials">
+        <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+          <div class="social">
+          
+          </div>
+        </a>
+        <a href="https://www.facebook.com/share/TYiLBUdxczcfDnPG/?mibextid=qi2Omg">
+          <div class="social">
+            
+          </div>
+        </a>
+        <a href="https://x.com/granjaburgers?t=2AwKDdOMALgILqy2lGJB-w&s=08">
+          <div class="social">
+          
+          </div>
+        </a>
+      </div> 
+    </div>
+
+  </footer>
+  <h4 class="fin">Pagina hecha por:
+    <br> crhistian camilo vargas barrera</h4>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper-1", {
+    slidesPerViews:1,
+    spaceBetween: 30,
+    loop:true,
+    pagination: {
+        el:".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl:".swiper-button-next",
+        prevEl:".swiper-button-prev",
+    }
+
+});
+var swiper = new Swiper(".mySwiper-2", {
+    slidesPerViews:3,
+    spaceBetween: 20,
+    loop:true,
+    loopFillGroupWithBlank: true,
+    navigation: {
+        nextEl:".swiper-button-next",
+        prevEl:".swiper-button-prev",
+    },
+    breakpoints : {
+        0: {
+            slidesPerViews:1,  
+        },
+        520: {
+            slidesPerViews:2,  
+        },
+        950: {
+            slidesPerViews:3,  
+        }
+    }
+
+});
+
+let tabInputs = document.querySelectorAll(".tabInput");
+
+tabInputs.forEach(function(input) {
+
+    input.addEventListener('change', function(){
+        let id = input.ariaValueMax;
+        let thisSwiper = document.getElementById('swiper' + id);
+        thisSwiper.swiper.update;
+    })
+
+});
+
+  </script>
+</body>
+</html>
